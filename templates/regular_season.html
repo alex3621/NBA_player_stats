@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <link href="/static/style.css" rel="stylesheet">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Regular season stats</title>
+    </head>
+    <body>
+        <div class="grid-container">
+            <div class="grid1">
+                <b>2018-19 REGULAR SEASON TOP 10 PERFORMERS</b>
+                <ul>
+                    <li><a href="/">Homepage</a></li>
+                    <li><a class="active" href="/regular_season">TOP 10 Regular Season 2018-19</a></li>
+                    <li><a href="/loading2">Regular Season 2018-19 Stats</a></li>
+                </ul>
+            </div>
+            <div class="grid3">
+                <button type="button" class="collapsible">TOP 10 ASSISTERS</button>
+                    <div class="content">
+                        <table id="players">
+                            <tr>
+                            <th>RANKING</th>
+                            <th>PLAYER NAME</th>
+                            <th>ASSISTS</th>
+                            </tr>
+
+                            {% for p in out_ast %}
+                            <tr><td>{{p.rank}}</td><td>{{p.name}}</td><td>{{p.ast}}</td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <button type="button" class="collapsible">TOP 10 SCORERS</button>
+                    <div class="content">
+                        <table id="players">
+                            <tr>
+                            <th>RANKING</th>
+                            <th>PLAYER NAME</th>
+                            <th>POINTS</th>
+                            </tr>
+
+                            {% for p in out %}
+                            <tr><td>{{p.rank}}</td><td>{{p.name}}</td><td>{{p.pts}}</td></tr>
+                            {% endfor %}
+                        </table>
+                    </div>
+            </div>
+            <script>
+                var coll = document.getElementsByClassName("collapsible");
+                var i;
+
+                for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                    content.style.display = "none";
+                    } else {
+                    content.style.display = "block";
+                    }
+                });
+}
+            </script>
+    </body>
